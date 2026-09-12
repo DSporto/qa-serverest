@@ -1,18 +1,25 @@
 class CadastroPage {
+  elementos = {
+    nome: () => cy.get('[data-testid="nome"]'),
+    email: () => cy.get('[data-testid="email"]'),
+    senha: () => cy.get('[data-testid="password"]'),
+    cadastrar: () => cy.get('[data-testid="cadastrar"]'),
+  };
+
   acessarPagina() {
     cy.visit("/cadastrarusuarios");
   }
 
   preencherNome(nome) {
-    cy.get('[data-testid="nome"]').type(nome);
+    this.elementos.nome().type(nome);
   }
 
   preencherEmail(email) {
-    cy.get('[data-testid="email"]').type(email);
+    this.elementos.email().type(email);
   }
 
   preencherSenha(senha) {
-    cy.get('[data-testid="password"]').type(senha);
+    this.elementos.senha().type(senha);
   }
 
   clicarCadastrar() {
@@ -20,7 +27,7 @@ class CadastroPage {
     cy.intercept("POST", "**/login").as("loginAutomatico");
     cy.intercept("GET", "**/produtos").as("carregarProdutos");
 
-    cy.get('[data-testid="cadastrar"]').click();
+    this.elementos.cadastrar().click();
 
     cy.wait("@cadastrarUsuario")
       .its("response.statusCode")
