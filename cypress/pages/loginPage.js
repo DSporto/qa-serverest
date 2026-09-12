@@ -26,13 +26,13 @@ class LoginPage {
   }
 
   preencherCredenciaisInvalidas() {
-  this.elementos.email().clear().type("usuario.invalido@teste.com");
-  this.elementos.senha().clear().type("senhaInvalida123");
-}
+    this.elementos.email().clear().type("usuario.invalido@teste.com");
+    this.elementos.senha().clear().type("senhaInvalida123");
+  }
 
-validarMensagemLoginInvalido() {
-  cy.contains("Email e/ou senha inválidos").should("be.visible");
-}
+  validarMensagemLoginInvalido() {
+    cy.contains("Email e/ou senha inválidos").should("be.visible");
+  }
 }
 
 export default new LoginPage();
